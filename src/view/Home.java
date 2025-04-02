@@ -10,13 +10,14 @@ import view.components.Sidebar;
 
 public class Home extends Application {
     public void start(Stage janela) throws Exception {
-        Sidebar menu = new Sidebar();
+        Sidebar menuLateral = new Sidebar();
 
         Image imgIconStarbucks = new Image(getClass().getResourceAsStream("/view/img/starbucks-48px.png"));
         Image imgBackground = new Image(getClass().getResourceAsStream("/view/img/" + "background.jpg"));
 
         BorderPane layoutPrincipal = new BorderPane();
-        layoutPrincipal.setLeft(menu);
+        layoutPrincipal.setLeft(menuLateral);
+        menuLateral.setStyle("-fx-background-color: white; -fx-padding: 30px");
         layoutPrincipal.setStyle("-fx-background-image: url('/view/img/background.jpg');");
 
         Scene scene = new Scene(layoutPrincipal,1024,700);

@@ -1,10 +1,12 @@
 package view.components;
 
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 
 public class Sidebar extends VBox {
 
@@ -16,12 +18,21 @@ public class Sidebar extends VBox {
 
     //construtor para inicializar o componentes (como um objeto) em outras janelas
     public Sidebar() {
-        Image imgIconFornecedor = new Image(getClass().getResourceAsStream("/view/img/fornecedor-40px.png"));
-        Image  imgIconProduto = new Image(getClass().getResourceAsStream("/view/img/Produto-40px.png"));
-        Image  imgIconCliente = new Image(getClass().getResourceAsStream("/view/img/cliente-40px.png"));
-        Image  imgIconPedido = new Image(getClass().getResourceAsStream("/view/img/Pedido-48px.png"));
+        Image imgIconFornecedor = new Image(getClass().getResourceAsStream("/view/resources/img/fornecedor-40px.png"));
+        Image  imgIconProduto = new Image(getClass().getResourceAsStream("/view/resources/img/Produto-40px.png"));
+        Image  imgIconCliente = new Image(getClass().getResourceAsStream("/view/resources/img/cliente-40px.png"));
+        Image  imgIconPedido = new Image(getClass().getResourceAsStream("/view/resources/img/Pedido-48px.png"));
+        Image imgIconstarbucks = new Image(getClass().getResourceAsStream("/view/resources/img/starbucks-96px.png"));
+
+        //carregamento de fonts
+        Font fonteNegrito = Font.loadFont(getClass().getResourceAsStream("/view/resources/fonts/Jost-ExtraBold.ttf"), 14);
+        Font fonteLigth = Font.loadFont(getClass().getResourceAsStream("/view/resources/fonts/Jost-Light.ttf"), 10);
 
         //determina como as imagens serao vizualizada
+        ImageView imgViewIconStarbucks = new ImageView(imgIconstarbucks);
+        imgViewIconStarbucks.setFitHeight(50);
+        imgViewIconStarbucks.setFitWidth(50);
+
         ImageView imgViewIconFornecedor = new ImageView(imgIconFornecedor);
         imgViewIconFornecedor.setFitHeight(20);//altura
         imgViewIconFornecedor.setFitWidth(20);//largura
@@ -44,11 +55,12 @@ public class Sidebar extends VBox {
 
         String styleButton = "-fx-background-color: transparent;" +
                 "-fx-border-color: transparent;"+
-                "-fx-font-size: 14px;"+
-                "-fx-font-weigth: bold;"+
+                "-fx-font-size: 18px;"+
                 "-fx-text-fill: black;" +
                 "-fx-alignment: center;"+
-                "-fx-graphic-text-gap: 10px";
+                "-fx-graphic-text-gap: 20px;"+
+                "-fx-font-family:" + fonteLigth.getFamily() +";" +
+                "-fx-cursor: hand;";
 
         btnFornecedor.setStyle(styleButton);
         btnProduto.setStyle(styleButton);
@@ -56,9 +68,25 @@ public class Sidebar extends VBox {
         btnPedido.setStyle(styleButton);
 
         Label lblMenu = new Label("Starbucks");
-        lblMenu.setStyle("-fx-font-size: 16px; -fx-font-weight: bold;");
+        lblMenu.setFont(Font.font(fonteNegrito.getFamily(),28));
+        lblMenu.setGraphic(imgViewIconStarbucks);
+        lblMenu.setGraphicTextGap(10);
 
+        //Adicionar um estilo
+        btnFornecedor.setOnMouseEntered(evento -> btnFornecedor.setStyle(styleButton.replace("transparent", "#58b558")));
+        btnFornecedor.setOnMouseExited(evento -> btnFornecedor.setStyle(styleButton.replace("#58b558", "transparent")));
 
+        btnCliente.setOnMouseEntered(evento -> btnCliente.setStyle(styleButton.replace("transparent", "#58b558")));
+        btnCliente.setOnMouseExited(evento -> btnCliente.setStyle(styleButton.replace("#58b558", "transparent")));
+
+        btnPedido.setOnMouseEntered(evento -> btnPedido.setStyle(styleButton.replace("transparent", "#58b558")));
+        btnPedido.setOnMouseExited(evento -> btnPedido.setStyle(styleButton.replace("#58b558", "transparent")));
+
+        btnProduto.setOnMouseEntered(evento -> btnProduto.setStyle(styleButton.replace("transparent", "#58b558")));
+        btnProduto.setOnMouseExited(evento -> btnProduto.setStyle(styleButton.replace("#58b558", "transparent")));
+
+        setMargin(lblMenu,new Insets(0,0,20,0));
+                    //superior ,direita, inferior, esquerda
 
         getChildren().addAll(lblMenu, btnFornecedor, btnProduto, btnCliente, btnPedido);
 

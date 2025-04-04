@@ -10,7 +10,7 @@ import view.components.Sidebar;
 public class Cliente extends Application {
 
     public void start(Stage janela) throws Exception {
-        Image imgIconStarbucks = new Image(getClass().getResourceAsStream("/view/img/starbucks-48px.png"));
+        Image imgIconStarbucks = new Image(getClass().getResourceAsStream("/view/resources/img/starbucks-48px.png"));
         Sidebar menuLateral = new Sidebar();
 
         BorderPane layoutPrincipal = new BorderPane();
